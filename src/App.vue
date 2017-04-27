@@ -1,9 +1,10 @@
 <template>
   <div class="container">
     <h1 class="text-center">Word Translator</h1>
-    <p class="text-center">Powered By Vue.js</p>
+    <p class="text-center"><a id="yandex" href="http://translate.yandex.com/" target="blank">Powered by Yandex.Translate</a></p>
+    <hr>
     <appTranslateForm v-on:form-submit="translateText"></appTranslateForm>
-    <appTranslateOutput :translatedWord="translatedWord">{{translatedWord}}</appTranslateOutput>
+    <appTranslateOutput :translatedWord="translatedWord"></appTranslateOutput>
   </div>
 </template>
 
@@ -23,8 +24,8 @@ export default {
   },
   methods:{
     translateText(text, language){
-      console.log(text);
-      this.$http.get('https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20170425T201904Z.2d86690769d8a9a3.931637966c2102f51909f2b63a00adfac673e81e&lang='+language+'&text='+text)
+      let encoded = encodeURI(text);
+      this.$http.get('https://translate.yandex.net/api/v1.5/tr.json/translate?key=trnsl.1.1.20170425T201904Z.2d86690769d8a9a3.931637966c2102f51909f2b63a00adfac673e81e&lang='+language+'&text='+encoded)
       .then((response) => {
         this.translatedWord = response.body.text[0];
       })
@@ -33,6 +34,14 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="css">
+  p{
+    padding-bottom: 25px;
+  }
+  #yandex{
+    color: inherit;
+  }
+  #yandex:hover{
+    text-decoration: none;
+  }
 </style>

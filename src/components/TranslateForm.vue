@@ -1,10 +1,11 @@
 <template lang="html">
-  <div class="">
+  <div class="text-center">
     <form class="form-inline">
-      <input type="text" placeholder="Translate Word" class="form-control" v-model="translateWord">
+      <textarea placeholder="Translate Word" class="form-control" v-model="translateWord"></textarea>
       <select class="form-control" v-model="language">
         <option value="ru">Russian</option>
         <option value="sr">Serbian</option>
+        <option value="en">English</option>
         <option value="de">German</option>
         <option value="pl">Polish</option>
         <option value="es">Spanish</option>
@@ -36,5 +37,8 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
+  form{
+    padding-top: 20px;
+  }
 </style>
